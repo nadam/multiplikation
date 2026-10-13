@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multiplikationsträning</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#ecf4ff;background:#080d1c;color-scheme:dark}*{box-sizing:border-box}body{margin:0;padding:10px;min-height:100dvh;background:radial-gradient(ellipse at 50% 0%,#202653 0%,#10152c 48%,#080d1c 100%)}main{max-width:470px;margin:0 auto}.panel{background:linear-gradient(155deg,#192443,#111a32 70%);border:1px solid #35436b;border-radius:20px;padding:15px 16px 9px;box-shadow:0 14px 45px #0008,0 0 35px #624cfd12}label{font-weight:750;font-size:.95rem}select{font:inherit;color:#f1f6ff;padding:8px 10px;border-radius:10px;border:1px solid #52628f;background:#253153;max-width:170px}.top{display:flex;justify-content:space-between;align-items:center;gap:8px}.muted{color:#a7b7d7;font-size:.82rem}.progress{height:10px;border-radius:30px;background:#090f22;overflow:hidden;margin:15px 0 7px;border:1px solid #354269}.bar{height:100%;background:linear-gradient(90deg,#27cdd8,#8a66ff);width:0;transition:width .25s;box-shadow:0 0 15px #23d9f6}.question{display:flex;justify-content:center;align-items:center;white-space:nowrap;gap:.12em;text-align:center;font-size:clamp(2.5rem,11vw,3.6rem);font-weight:800;margin:22px 0 17px;text-shadow:0 0 20px #79b7ff30}.answer{border:2px solid #6a7dad;border-radius:12px;text-align:center;font-weight:800;padding:3px;min-width:0;background:#0c142d;color:#ffffff}.inline-answer{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:2.2em;min-height:1.15em;height:1.15em;margin:0 0 0 .12em;font-size:inherit;border-radius:12px;box-shadow:inset 0 2px 9px #0005}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.keypad button,.action{border:1px solid #516395;border-bottom:4px solid #303b68;border-radius:13px;min-height:clamp(54px,8.7dvh,70px);font-size:1.55rem;font-weight:800;cursor:pointer;background:linear-gradient(180deg,#344873,#243355);color:#f2f7ff;touch-action:manipulation;box-shadow:0 3px 12px #0004;transition:transform .09s,filter .12s,background .12s}.keypad button:active,.action:active{transform:translateY(3px);border-bottom-width:1px;filter:brightness(1.25)}.keypad button.help-key{background:linear-gradient(180deg,#574488,#3b3068);border-color:#8773bb;border-bottom-color:#322753}.keypad button.delete-key{background:linear-gradient(180deg,#46546e,#2b3850)}.action{font-size:1rem;min-height:52px;width:100%;background:linear-gradient(90deg,#2674c4,#664bcb)}.help{background:#1c2543;border:1px solid #a08aff;border-radius:12px;padding:12px 14px;line-height:1.4;font-size:.95rem;margin-top:8px;position:static;width:100%;box-shadow:0 6px 22px #0006}.help p{margin:0 0 5px}.help p:last-child{margin-bottom:0}.feedback{font-weight:800;text-align:center;min-height:0;margin:5px 0 0;font-size:1rem}.success{color:#4ef2c4}.error{color:#ff9eab}.hidden{display:none!important}.done{text-align:center;padding:35px 0 15px}.done h2{font-size:1.8rem;color:#62e8ef}.reset{border:0;background:none;color:#b6c6f5;text-decoration:underline;cursor:pointer;font:inherit;font-size:.85rem}.correct-flash{animation:correctGlow .6s ease-out}.correct-flash .answer{border-color:#4ef2c4;box-shadow:0 0 25px #4ef2c488;background:#153b40}.feedback-pop{animation:pop .32s ease-out}@keyframes correctGlow{0%{filter:brightness(1)}30%{filter:brightness(1.4)}100%{filter:brightness(1)}}@keyframes pop{0%{transform:scale(.8);opacity:.2}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}@media(max-height:740px){body{padding:5px}.panel{padding:10px 12px}.question{margin:12px 0 10px}.progress{margin:9px 0 5px}.keypad{gap:6px}.keypad button{min-height:clamp(49px,8dvh,62px)}.feedback{margin:7px 0 1px}.help{font-size:.86rem;padding:8px 10px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+.setup-title{font-size:1.35rem;margin:4px 0 6px}.setup-note{color:#a7b7d7;margin:0 0 16px}.table-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 18px}.table-choice{border:1px solid #52628f;border-bottom:4px solid #303b68;background:#253153;color:#f1f6ff;border-radius:13px;min-height:65px;font-size:1.6rem;font-weight:800;cursor:pointer}.table-choice.completed:not(.selected){background:#151d32;border-color:#303b55;color:#71809e;box-shadow:inset 0 2px 8px #0005}.table-choice.selected{background:linear-gradient(145deg,#217f9c,#6248c4);border-color:#79d9ef;box-shadow:0 0 13px #34cced55}.reset-all{margin-top:12px;background:linear-gradient(180deg,#344873,#243355)}.all-complete{color:#64e9ed;font-weight:750;text-align:center;margin:12px 0 4px}.setup-error{color:#ff9eab;min-height:22px;text-align:center}.session-title{color:#a7b7d7;font-size:.9rem;font-weight:700}.done-actions{display:grid;gap:10px}.secondary-action{background:linear-gradient(180deg,#344873,#243355)}
+
+.result-overlay{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:18px;background:#050918dc;backdrop-filter:blur(7px)}.result-dialog{width:min(100%,420px);background:linear-gradient(150deg,#26355d,#111b35);border:2px solid #8c78e9;border-radius:22px;padding:28px 22px;text-align:center;box-shadow:0 0 55px #7461ff55}.result-dialog h2{font-size:1.55rem;margin:0 0 12px}.result-percent{font-size:clamp(3.8rem,17vw,5.5rem);font-weight:900;color:#64e9ed;font-variant-numeric:tabular-nums;text-shadow:0 0 26px #34d7f766}.result-track{height:23px;background:#080f22;border:1px solid #54628e;border-radius:30px;overflow:hidden;margin:16px 0}.result-fill{height:100%;width:0;background:linear-gradient(90deg,#24c8d7,#9475ff);border-radius:30px;box-shadow:0 0 18px #54d8ff88}.result-info{color:#b6c6e8;font-size:.9rem;margin:12px 0 20px}.result-dialog button:disabled{opacity:.4;cursor:default;filter:grayscale(.6)}
+</style>
+</head>
+<body><main><section class="panel">
+
+<div id="setup"><h1 class="setup-title">Välj tabeller</h1><p class="setup-note">Välj en eller flera att träna på. Mörkare knappar är redan avklarade, men kan väljas igen.</p><div class="table-grid" id="tableChoices"></div><p class="all-complete hidden" id="allComplete">🏆 Alla tabeller avklarade!</p><button class="action" id="start">Starta träning</button><button class="action reset-all hidden" id="resetAll">Börja om från början</button><div class="setup-error" id="setupError" aria-live="polite"></div></div>
+<div id="game" class="hidden"><div class="top"><span class="session-title" id="sessionTitle"></span><button class="reset" id="changeTables">Byt tabeller</button></div>
+<div id="practice"><div class="progress" role="progressbar" aria-label="Avklarade uppgifter"><div class="bar" id="bar"></div></div><div class="top muted"><span id="status"></span><span id="counter"></span></div><div class="question"><span id="question"></span><span class="answer inline-answer" id="answer" aria-label="Ditt svar" aria-live="polite"></span></div><div class="keypad" id="keys"></div><div id="feedback" class="feedback" aria-live="polite"></div><div id="help" class="help hidden"></div></div>
+<div class="done hidden" id="done"><h2>🎉 Bra jobbat!</h2><p>Du har klarat alla valda tabeller!</p><p id="summary"></p><div class="done-actions"><button class="action" id="again">Träna igen</button><button class="action secondary-action" id="chooseAgain">Välj andra tabeller</button></div></div></div>
+</section></main>
+<div class="result-overlay hidden" id="resultOverlay"><div class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="resultHeading"><h2 id="resultHeading">Träningen klar! 🎉</h2><div class="result-percent" id="resultPercent" aria-live="off">0 %</div><div class="result-track"><div class="result-fill" id="resultFill"></div></div><p class="result-info" id="resultInfo"></p><button class="action" id="continueResult" disabled>Fortsätt</button></div></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const selected=new Set();
+let completed=new Set();
+try{const saved=JSON.parse(localStorage.getItem('multiplikation-completed-v12')||'[]');if(Array.isArray(saved))completed=new Set(saved.filter(n=>Number.isInteger(n)&&n>=2&&n<=9))}catch(e){}
+function refreshChoices(){$('allComplete').classList.toggle('hidden',completed.size!==8);$('resetAll').classList.toggle('hidden',completed.size!==8);for(const button of $('tableChoices').children){const n=Number(button.textContent);button.classList.toggle('selected',selected.has(n));button.classList.toggle('completed',completed.has(n));button.setAttribute('aria-pressed',String(selected.has(n)));button.setAttribute('aria-label',n+':ans tabell'+(completed.has(n)?', tidigare avklarad':'')+(selected.has(n)?', vald':''))}}
+for(let n=2;n<=9;n++){const button=document.createElement('button');button.type='button';button.className='table-choice';button.textContent=n;button.setAttribute('aria-pressed',String(selected.has(n)));button.addEventListener('click',()=>{if(selected.has(n))selected.delete(n);else selected.add(n);refreshChoices();$('setupError').textContent=''});$('tableChoices').append(button)}refreshChoices();
+let counts,items=[],previous=null,current=null,typed='',mistakes=0,questions=0,locked=false,finished=false,session=0,usedHelp=false;
+const max=10,min=2;
+function showSetup(){stopResultAnimation();$('resultOverlay').classList.add('hidden');session++;finished=true;locked=false;$('game').classList.add('hidden');$('setup').classList.remove('hidden');refreshChoices()}
+function init(){stopResultAnimation();$('resultOverlay').classList.add('hidden');if(selected.size===0){$('setupError').textContent='Välj minst en tabell.';return}session++;items=[];for(const a of [...selected].sort((x,y)=>x-y))for(let b=min;b<=max;b++)items.push({a,b,key:a+'-'+b});counts=Object.fromEntries(items.map(x=>[x.key,0]));previous=null;current=null;typed='';mistakes=0;questions=0;locked=false;finished=false;$('setup').classList.add('hidden');$('game').classList.remove('hidden');$('practice').classList.remove('hidden');$('done').classList.add('hidden');$('sessionTitle').textContent='Tabell '+[...selected].sort((x,y)=>x-y).join(', ');next()}
+function choose(){const pool=items.filter(x=>counts[x.key]<3);if(pool.length===0)return null;let candidates=pool.filter(x=>x.key!==previous);if(candidates.length===0)candidates=items.filter(x=>x.key!==previous&&counts[x.key]>=3);if(candidates.length===0)candidates=pool;return candidates[Math.floor(Math.random()*candidates.length)]}
+function next(){current=choose();if(current===null){finish();return}typed='';locked=false;usedHelp=false;$('answer').textContent='';$('feedback').textContent='';$('feedback').className='feedback';$('practice').classList.remove('correct-flash');$('help').classList.add('hidden');$('question').textContent=current.a+' × '+current.b+' =';const mastered=items.filter(x=>counts[x.key]>=3).length;$('bar').style.width=(mastered/items.length*100)+'%';$('status').textContent=mastered+' av '+items.length+' avklarade';$('counter').textContent=counts[current.key]>=3?'Repetition':counts[current.key]+' av 3 rätt';previous=current.key}
+function explanation(){const a=current.a,b=current.b;let hint;
+if(b===2)hint='Dubbla '+a+'.';
+else if(b===5)hint='Ta hälften av 10 gånger '+a+'.';
+else if(b===10)hint='Lägg till en nolla efter '+a+'.';
+else if(b===9)hint='Ta 10 gånger '+a+' och dra bort '+a+' från det.';
+else if(b===4)hint='Dubbla '+a+' två gånger.';
+else if((a===7&&b===8)||(a===8&&b===7))hint='Tänk på talföljden 5, 6, 7, 8. De två sista talen ska multipliceras.';
+else if(b===8)hint='Dubbla '+a+' tre gånger.';
+else if(b===3)hint='Dubbla '+a+' och lägg till '+a+' en gång till.';
+else if(b===6)hint='Ta 5 gånger '+a+' och lägg till '+a+'.';
+else if(b===7)hint='Ta 5 gånger '+a+' och lägg till 2 gånger '+a+'.';
+else hint='Ta '+(b-1)+' gånger '+a+' och lägg till '+a+'.';
+return '<p>'+hint+'</p>'}
+function showHelp(){if(finished||locked)return;if(!usedHelp){usedHelp=true;mistakes++}$('help').innerHTML=explanation();$('help').classList.remove('hidden')}
+function submit(){if(locked||finished||typed==='')return;const correct=current.a*current.b;questions++;if(Number(typed)===correct){if(!usedHelp&&counts[current.key]<3)counts[current.key]++;$('feedback').textContent=usedHelp?'✓ Rätt svar! (räknas inte)':['✓ Snyggt!','✓ Perfekt!','✓ Rätt!','✓ Grymt!'][Math.floor(Math.random()*4)];$('feedback').className='feedback success feedback-pop';$('practice').classList.remove('correct-flash');void $('practice').offsetWidth;$('practice').classList.add('correct-flash');locked=true;const run=session;setTimeout(()=>{if(run===session&&locked&&!finished)next()},650)}else{if(!usedHelp)mistakes++;usedHelp=true;$('feedback').textContent='Försök igen!';$('feedback').className='feedback error';showHelp();typed='';$('answer').textContent=''}}
+function press(v){if(locked||finished)return;if(v==='del'){typed=typed.slice(0,-1);$('answer').textContent=typed}else if(typed.length<String(current.a*current.b).length){typed+=v;$('answer').textContent=typed;if(typed.length===String(current.a*current.b).length)submit()}}
+let resultFrame=null;
+function stopResultAnimation(){if(resultFrame!==null){cancelAnimationFrame(resultFrame);resultFrame=null}}
+function finish(){
+ for(const n of selected)completed.add(n);
+ try{localStorage.setItem('multiplikation-completed-v12',JSON.stringify([...completed]))}catch(e){}
+ selected.clear();refreshChoices();
+ finished=true;$('practice').classList.add('hidden');$('done').classList.remove('hidden');
+ $('summary').textContent='Du svarade på '+questions+' frågor och hade '+mistakes+' misslyckade försök.';
+ // Varje uppgift kräver tre lyckade omgångar. Hjälp eller felsvar räknas som misslyckande.
+ const successful=items.length*3;
+ const score=Math.round(100*successful/(successful+mistakes));
+ $('resultInfo').textContent=mistakes===0?'Helt utan fel eller hjälp!':mistakes+' misslyckade försök (inklusive hjälp).';
+ $('resultPercent').textContent='0 %';$('resultFill').style.width='0%';
+ $('continueResult').disabled=true;$('resultOverlay').classList.remove('hidden');
+ const duration=2200,run=session;let start=null;
+ function frame(now){if(run!==session)return;if(start===null)start=now;
+  const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);
+  const value=Math.min(score,Math.round(score*eased));
+  $('resultPercent').textContent=value+' %';$('resultFill').style.width=value+'%';
+  if(t<1)resultFrame=requestAnimationFrame(frame);
+  else{resultFrame=null;$('resultPercent').textContent=score+' %';$('resultFill').style.width=score+'%';$('continueResult').disabled=false}
+ }
+ resultFrame=requestAnimationFrame(frame);
+}
+$('continueResult').addEventListener('click',()=>{if($('continueResult').disabled)return;showSetup()});
+const layout=['1','2','3','4','5','6','7','8','9','help','0','del'];for(const v of layout){const b=document.createElement('button');b.type='button';b.textContent=v==='del'?'⌫':v==='help'?'💡 Hjälp':v;if(v==='help'){b.style.fontSize='.95rem';b.classList.add('help-key')}if(v==='del')b.classList.add('delete-key');b.setAttribute('aria-label',v==='del'?'Radera sista siffran':v==='help'?'Visa hjälp':v);b.addEventListener('click',()=>v==='help'?showHelp():press(v));$('keys').append(b)}
+$('resetAll').addEventListener('click',()=>{completed.clear();selected.clear();try{localStorage.removeItem('multiplikation-completed-v12')}catch(e){}$('setupError').textContent='';refreshChoices()});$('start').addEventListener('click',init);$('changeTables').addEventListener('click',showSetup);$('chooseAgain').addEventListener('click',showSetup);$('again').addEventListener('click',init);document.addEventListener('keydown',e=>{if($('game').classList.contains('hidden'))return;if(/^\d$/.test(e.key))press(e.key);else if(e.key==='Backspace')press('del')});
+})();
+</script></body></html>
