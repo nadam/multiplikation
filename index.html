@@ -44,7 +44,7 @@ else if(b===3)hint='Dubbla '+a+' och lägg till '+a+' en gång till.';
 else if(b===6)hint='Ta 5 gånger '+a+' och lägg till '+a+'.';
 else if(b===7)hint='Ta 5 gånger '+a+' och lägg till 2 gånger '+a+'.';
 else hint='Ta '+(b-1)+' gånger '+a+' och lägg till '+a+'.';
-return '<p>'+hint+'</p>'}
+return '<p>Tips: '+hint+'</p>'}
 function showHelp(){if(finished||locked)return;if(!usedHelp){usedHelp=true;mistakes++;needsTwo.add(current.key);counts[current.key]=0}$('help').innerHTML=explanation();$('help').classList.remove('hidden')}
 function submit(){if(locked||finished||typed==='')return;const correct=current.a*current.b;questions++;if(Number(typed)===correct){if(!usedHelp&&counts[current.key]<(needsTwo.has(current.key)?2:1))counts[current.key]++;$('feedback').textContent=usedHelp?'✓ Rätt svar! (räknas inte)':['✓ Snyggt!','✓ Perfekt!','✓ Rätt!','✓ Grymt!'][Math.floor(Math.random()*4)];$('feedback').className='feedback success feedback-pop';$('practice').classList.remove('correct-flash');void $('practice').offsetWidth;$('practice').classList.add('correct-flash');locked=true;const run=session;setTimeout(()=>{if(run===session&&locked&&!finished)next()},650)}else{if(!usedHelp){mistakes++;needsTwo.add(current.key);counts[current.key]=0}usedHelp=true;$('feedback').textContent='Försök igen!';$('feedback').className='feedback error';showHelp();typed='';$('answer').textContent=''}}
 function press(v){if(locked||finished)return;if(v==='del'){typed=typed.slice(0,-1);$('answer').textContent=typed}else if(typed.length<String(current.a*current.b).length){typed+=v;$('answer').textContent=typed;if(typed.length===String(current.a*current.b).length)submit()}}
